@@ -1,9 +1,13 @@
 import React, { PropTypes } from 'react';
 
-export default App = ({ content }) => {
-	return (
-		<div className="ui app container">
-			{content}
-		</div>
-	);
+const App = ({ content }) => (
+	<div className="ui app container">
+		{content}
+	</div>
+);
+
+App.propTypes = {
+	content: PropTypes.element,
 };
+
+export default App;
