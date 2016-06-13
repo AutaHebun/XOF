@@ -1,0 +1,12 @@
+{
+    "extends": "airbnb",
+    "rules": {
+        "indent": [2, "tab"],
+        "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
+        "no-console": 0,
+        "prefer-arrow-callback": 0,
+        "consistent-return": 0,
+        "quote-props": ["error", "as-needed", { "keywords": true, "unnecessary": false }]
+    },
+    "parser": "babel-eslint"
+}

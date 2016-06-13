@@ -1,0 +1,30 @@
+{
+  "name": "xof",
+  "version": "1.0.0",
+  "description": "training mgr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "meteor",
+    "react"
+  ],
+  "author": "Autahebun",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-addons-pure-render-mixin": "^15.1.0",
+    "react-addons-transition-group": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-mounter": "^1.2.0",
+    "react-router": "^2.4.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.4",
+    "eslint": "^2.8.0",
+    "eslint-config-airbnb": "^7.0.0",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
+    "eslint-plugin-react": "^4.3.0"
+  }
+}
