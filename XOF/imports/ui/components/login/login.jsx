@@ -8,6 +8,7 @@ class Login extends Component {
 	}
 
 	login() {
+		console.log('dafuq');
 		event.preventDefault();
 		const email = this.refs.email.value;
 		const password = this.refs.password.value;
@@ -24,7 +25,12 @@ class Login extends Component {
 		return (
 			<div className="ui middle aligned center aligned grid">
 				<div className="column login">
-					<form className="ui large form">
+					<h2 className="ui blue header">
+						<div className="content">
+							Training Manager
+						</div>
+					</h2>
+					<div className="ui large form">
 						<div className="ui stacked segment">
 							<div className="field">
 								<div className="ui left icon input">
@@ -38,10 +44,14 @@ class Login extends Component {
 									<input type="password" name="register-password" ref="password" placeholder="Passoword"></input>
 								</div>
 							</div>
-							<div className="ui fluid large submit positive button" onClick={this.login}>Login</div>
+							<div className="ui buttons">
+								<button className="ui green submit button" onClick={this.login}>Login</button>
+								<div className="or"></div>
+								<button className="ui blue button">Sign Up</button>
+							</div>
 						</div>
 						<div className="ui error message"></div>
-					</form>
+					</div>
 				</div>
 			</div>
 		);
