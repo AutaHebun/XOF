@@ -6,6 +6,7 @@ import { Meteor } from 'meteor/meteor';
 import AppLayout from '../../ui/layouts/appLayout.jsx';
 import LoginLayout from '../../ui/layouts/loginLayout.jsx';
 import Login from '../../ui/components/login/login.jsx';
+import Signup from '../../ui/components/signup/signup.jsx';
 import Home from '../../ui/components/home/home.jsx';
 
 FlowRouter.route('/', {
@@ -21,6 +22,14 @@ FlowRouter.route('/login', {
 	action() {
 		mount(LoginLayout, {
 			content: <Login />,
+		});
+	},
+});
+
+FlowRouter.route('/signup', {
+	action() {
+		mount(LoginLayout, {
+			content: <Signup />,
 		});
 	},
 });
