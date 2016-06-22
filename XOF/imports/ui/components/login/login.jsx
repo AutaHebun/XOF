@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 class Login extends Component {
 	constructor(props) {
@@ -8,7 +9,6 @@ class Login extends Component {
 	}
 
 	login() {
-		console.log('dafuq');
 		event.preventDefault();
 		const email = this.refs.email.value;
 		const password = this.refs.password.value;
@@ -17,7 +17,7 @@ class Login extends Component {
 			if (err) {
 				return console.log('error', err);
 			}
-			console.log('successful login');
+			FlowRouter.go('/home');
 		});
 	}
 
