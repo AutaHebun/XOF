@@ -21,6 +21,10 @@ class Login extends Component {
 		});
 	}
 
+	redirectSignUp() {
+		FlowRouter.go('/signup');
+	}
+
 	render() {
 		return (
 			<div className="ui middle aligned center aligned grid">
@@ -41,13 +45,13 @@ class Login extends Component {
 							<div className="field">
 								<div className="ui left icon input">
 									<i className="lock icon"></i>
-									<input type="password" name="register-password" ref="password" placeholder="Passoword"></input>
+									<input type="password" name="register-password" ref="password" placeholder="Password"></input>
 								</div>
 							</div>
 							<div className="ui buttons">
 								<button className="ui green submit button" onClick={this.login}>Login</button>
 								<div className="or"></div>
-								<button className="ui blue button">Sign Up</button>
+								<button className="ui blue button" onClick={this.redirectSignUp}>Sign Up</button>
 							</div>
 						</div>
 						<div className="ui error message"></div>
