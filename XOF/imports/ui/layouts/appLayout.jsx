@@ -1,8 +1,12 @@
 import React, { PropTypes } from 'react';
+import NavbarContainer from '../containers/navbar/navbarContainer';
 
 const App = ({ content }) => (
-	<div className="ui app container">
-		{content}
+	<div>
+		<NavbarContainer />
+		<div className="ui app container">
+			{content}
+		</div>
 	</div>
 );
 

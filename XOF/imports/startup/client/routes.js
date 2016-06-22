@@ -1,14 +1,39 @@
 import React from 'react';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { mount } from 'react-mounter';
+import { Meteor } from 'meteor/meteor';
 
-import App from '../../ui/layouts/app.jsx';
+import AppLayout from '../../ui/layouts/appLayout.jsx';
+import LoginLayout from '../../ui/layouts/loginLayout.jsx';
+import Login from '../../ui/components/login/login.jsx';
 import Home from '../../ui/components/home/home.jsx';
 
 FlowRouter.route('/', {
 	name: 'default.route',
+	triggersEnter: [(context, redirect) => {
+		if (!Meteor.userId()) {
+			redirect('/login');
+		}
+	}],
+});
+
+FlowRouter.route('/login', {
 	action() {
-		mount(App, {
+		mount(LoginLayout, {
+			content: <Login />,
+		});
+	},
+});
+
+FlowRouter.route('/home', {
+	triggersEnter: [(context, redirect) => {
+		if (!Meteor.userId()) {
+			redirect('/login');
+		}
+	}],
+	name: 'home.route',
+	action() {
+		mount(AppLayout, {
 			content: <Home />,
 		});
 	},
