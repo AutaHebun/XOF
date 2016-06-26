@@ -9,3 +9,11 @@ Meteor.publish('userData', function userData() {
 		},
 	});
 });
+
+Meteor.publish('allUsers', function allUsers() {
+	return Meteor.users.find({}, {
+		fields: {
+			services: 0,
+		},
+	});
+});

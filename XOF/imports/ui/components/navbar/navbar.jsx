@@ -13,11 +13,11 @@ class Navbar extends Component {
 	}
 	render() {
 		return (
-			<div className="ui menu">
+			<div className="ui menu inverted custom-menu">
 				<div className="ui container">
 					<div className="header item">Welcome {this.props.currentUser.profile.name}</div>
 					<a className="active item">My Courses</a>
-					<a className="item">Link</a>
+					<a className="item" href="/users">Users</a>
 					<div className="right menu">
 						{this.props.currentUser
 							? <a className="item logout" onClick={this.logout}>Logout</a>
