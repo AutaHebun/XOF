@@ -13,6 +13,7 @@
   "author": "Autahebun",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.5",
     "moment": "^2.13.0",
     "react": "^15.1.0",
     "react-addons-pure-render-mixin": "^15.1.0",

@@ -24,5 +24,4 @@ mdg:validation-error
 semantic:ui
 flemay:less-autoprefixer
 kadira:flow-router
-react-meteor-data
 static-html

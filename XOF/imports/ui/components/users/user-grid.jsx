@@ -1,21 +1,49 @@
 import React, { PropTypes, Component } from 'react';
+import { $ } from 'meteor/jquery';
 import User from './user.jsx';
+import Paginator from '../helpers/paginator.jsx';
+import AddUserModal from './add-user-modal.jsx';
 
 class UserGrid extends Component {
-	renderUsers() {
-		return this.props.users.map((user) => (
-			<User key={user._id} user={user} />
-		));
+	constructor(props) {
+		super(props);
+		this.state = {
+			currentPage: 0,
+		};
+		this.renderUserPage = this.renderUserPage.bind(this);
 	}
+
+	componentWillReceiveProps() {
+		this.renderUsers();
+	}
+
+	openAddUserModal() {
+		$('.add-user').modal('show');
+	}
+
+	renderUsers() {
+		const startRange = this.state.currentPage * 10;
+		const endRange = startRange + 10;
+		return this.props.users.slice(startRange, endRange).map((user) => <User key={user._id} user={user} />);
+	}
+
+	renderUserPage(index) {
+		this.setState({
+			currentPage: index,
+		});
+	}
+
 	render() {
 		return (this.props.users.length > 0
-			? <table className="ui table user-table">
+			? <div>
+				<AddUserModal />
+				<table className="ui table user-table">
 					<thead>
 						<tr>
-							<th>Name</th>
+							<th>Name {this.props.users.length}</th>
 							<th>Email</th>
 							<th>Role</th>
-							<th>Creado</th>
+							<th>Created</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -24,22 +52,15 @@ class UserGrid extends Component {
 					<tfoot>
 						<tr>
 							<th colSpan="4">
-								<div className="ui right floated pagination menu">
-									<a className="icon item">
-										<i className="left chevron icon"></i>
-									</a>
-									<a className="item">1</a>
-									<a className="item">2</a>
-									<a className="item">3</a>
-									<a className="item">4</a>
-									<a className="icon item">
-										<i className="right chevron icon"></i>
-									</a>
-								</div>
+								<div className="ui small labeled icon green button" onClick={this.openAddUserModal}>
+						            <i className="user icon"></i> Add User
+						        </div>
+								<Paginator amountData={this.props.users.length} renderFunction={this.renderUserPage} elementsPerPage={10} />
 							</th>
 						</tr>
 					</tfoot>
 				</table>
+			</div>
 			: <h2 className="ui center aligned icon header">
 				<i className="circular users icon"></i>
 				No Users Found

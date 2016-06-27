@@ -56,9 +56,6 @@ FlowRouter.route('/users', {
 		if (!Meteor.userId()) {
 			redirect('/login');
 		}
-		if (Meteor.userId() && Meteor.user().profile.role !== 'admin') {
-			redirect('/login');
-		}
 	}],
 	name: 'users.usergrid',
 	action() {
