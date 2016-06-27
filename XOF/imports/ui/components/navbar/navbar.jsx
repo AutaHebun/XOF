@@ -3,24 +3,23 @@ import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 class Navbar extends Component {
-	constructor(props) {
-		super(props);
-		this.logout = this.logout.bind(this);
-	}
 	logout() {
 		Meteor.logout();
 		FlowRouter.go('/login');
 	}
 	render() {
+		const { currentUser } = this.props;
+		const { profile } = currentUser;
+
 		return (
 			<div className="ui menu inverted custom-menu">
 				<div className="ui container">
-					<div className="header item">Welcome {this.props.currentUser.profile.name}</div>
+					<div className="header item">Welcome {profile.name}</div>
 					<a className="active item">My Courses</a>
 					<a className="item" href="/users">Users</a>
 					<div className="right menu">
-						{this.props.currentUser
-							? <a className="item logout" onClick={this.logout}>Logout</a>
+						{currentUser
+							? <a className="item logout" onClick={() => this.logout()}>Logout</a>
 							: <a className="item profile">Profile</a>}
 					</div>
 				</div>

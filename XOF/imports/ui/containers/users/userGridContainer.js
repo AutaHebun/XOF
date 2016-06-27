@@ -7,6 +7,7 @@ const composer = (props, onData) => {
 	if (userHandle.ready()) {
 		const users = Meteor.users.find({}).fetch();
 		onData(null, {
+			currentUser: Meteor.user(),
 			users,
 		});
 	}

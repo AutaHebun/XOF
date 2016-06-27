@@ -21,7 +21,7 @@ export const insertUser = new ValidatedMethod({
 	}).validator(),
 	run({ name, email, password, role }) {
 		if (!this.userId) {
-			throw new Meteor.Error('You need to be logged in to make this operation');
+			throw new Meteor.Error('Unauthorized Error');
 		}
 		Accounts.createUser({
 			email,
@@ -31,5 +31,24 @@ export const insertUser = new ValidatedMethod({
 				role,
 			},
 		});
+	},
+});
+
+export const removeUser = new ValidatedMethod({
+	name: 'users.delete',
+	validate: new SimpleSchema({
+		userId: {
+			type: String,
+		},
+	}).validator(),
+	run({ userId }) {
+		if (!this.userId) {
+			throw new Meteor.Error('Unauthorized Error');
+		}
+		if (this.userId === userId) {
+			throw new Meteor.Error('Unable to delete current user, session is active');
+		}
+
+		Meteor.users.remove(userId);
 	},
 });

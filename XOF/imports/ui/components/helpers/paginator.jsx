@@ -7,9 +7,6 @@ class Paginator extends Component {
 		this.state = {
 			currentPage: 0,
 		};
-		this.prevPage = this.prevPage.bind(this);
-		this.nextPage = this.nextPage.bind(this);
-		this.goToPage = this.goToPage.bind(this);
 	}
 	navClasses() {
 		const totalPages = Math.ceil(this.props.amountData / this.props.elementsPerPage);
@@ -24,17 +21,23 @@ class Paginator extends Component {
 	}
 
 	prevPage() {
+		if (this.state.currentPage === 0) {
+			return;
+		}
 		const prevPageIndex = this.state.currentPage - 1;
 		this.goToPage(prevPageIndex);
 	}
 
 	nextPage() {
+		const totalPages = Math.ceil(this.props.amountData / this.props.elementsPerPage);
+		if (this.state.currentPage === totalPages - 1) {
+			return;
+		}
 		const nextPageIndex = this.state.currentPage + 1;
 		this.goToPage(nextPageIndex);
 	}
 
 	goToPage(index) {
-		console.log('index', index);
 		this.setState({
 			currentPage: index,
 		});
@@ -57,11 +60,11 @@ class Paginator extends Component {
 		const [prevClass, postClass] = this.navClasses();
 		return (
 				<div className="ui right floated pagination menu">
-					<a className={prevClass} onClick={this.prevPage}>
+					<a className={prevClass} onClick={() => this.prevPage()}>
 						<i className="left chevron icon"></i>
 					</a>
 					{this.renderPaginationControls()}
-					<a className={postClass} onClick={this.nextPage}>
+					<a className={postClass} onClick={() => this.nextPage()}>
 						<i className="right chevron icon"></i>
 					</a>
 				</div>

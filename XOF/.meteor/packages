@@ -25,3 +25,4 @@ semantic:ui
 flemay:less-autoprefixer
 kadira:flow-router
 static-html
+kadira:debug
