@@ -4,6 +4,7 @@ import { updateUser } from '../../../api/users/methods';
 class EditUserModal extends Component {
 	constructor(props) {
 		super(props);
+		console.log(this.props);
 		this.state = {
 			admin: false,
 			student: true,
@@ -32,7 +33,7 @@ class EditUserModal extends Component {
 		});
 	}
 
-	addUser() {
+	editUser() {
 		const name = this.refs.name.value;
 		const email = this.refs.email.value;
 		const password = this.refs.password.value;
@@ -46,7 +47,8 @@ class EditUserModal extends Component {
 			role = 'student';
 		}
 
-		insertUser.call({
+		updateUser.call({
+            //pass user id
 			name,
 			email,
 			password,
@@ -55,12 +57,12 @@ class EditUserModal extends Component {
 			if (err) {
 				return console.log('oops', err);
 			}
-			console.log('created user');
+			console.log('updated user');
 		});
 	}
 	render() {
 		return (
-			<div className="ui basic modal add-user">
+			<div className="ui basic modal edit-user">
 				<div className="ui center aligned large header">Edit User</div>
 				<div classNmae="content">
 					<div className="ui large form">
@@ -75,12 +77,6 @@ class EditUserModal extends Component {
 								<div className="ui left icon input">
 									<i className="user icon"></i>
 									<input type="text" name="register-email" ref="email" placeholder="Email"></input>
-								</div>
-							</div>
-							<div className="field">
-								<div className="ui left icon input">
-									<i className="lock icon"></i>
-									<input type="password" name="password" ref="password" placeholder="Password"></input>
 								</div>
 							</div>
 							<div className="inline fields">
@@ -105,8 +101,8 @@ class EditUserModal extends Component {
 							</div>
 							<div className="actions">
 								<div className="two ui buttons">
-									<button className="ui positive labeled icon button" onClick={() => this.addUser()}>
-										<i className="checkmark icon"></i>Add User</button>
+									<button className="ui positive labeled icon button" onClick={() => this.editUser()}>
+										<i className="checkmark icon"></i>Edit User</button>
 									<button className="ui cancel red labeled icon button">
 										<i className="remove icon"></i> Cancel</button>
 								</div>
@@ -119,4 +115,4 @@ class EditUserModal extends Component {
 	}
 }
 
-export default AddUserModal;
+export default EditUserModal;
