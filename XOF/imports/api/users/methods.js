@@ -52,3 +52,27 @@ export const removeUser = new ValidatedMethod({
 		Meteor.users.remove(userId);
 	},
 });
+
+export const updateUser = new ValidatedMethod({
+	name: 'users.update',
+	validate: new SimpleSchema({
+		userId: {
+			type: String
+		},
+		name: {
+			type: String,
+		},
+		email: {
+			type: String,
+		},
+		password: {
+			type: String,
+		},
+		role: {
+			type: String,
+		},
+	}).validator(),
+	run({ userId, name, email, password, role }) {
+		Accounts.users.update({_id: userId}, {name, email, password, role});
+	},
+});

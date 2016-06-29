@@ -3,6 +3,7 @@ import { $ } from 'meteor/jquery';
 import User from './user.jsx';
 import Paginator from '../helpers/paginator.jsx';
 import AddUserModal from './add-user-modal.jsx';
+import EditUserModal from './edit-user-modal.jsx';
 import DeleteUserConfirmation from './delete-user-confirmation.jsx';
 
 class UserGrid extends Component {
