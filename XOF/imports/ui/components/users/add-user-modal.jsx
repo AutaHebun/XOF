@@ -62,7 +62,7 @@ class AddUserModal extends Component {
 		return (
 			<div className="ui basic modal add-user">
 				<div className="ui center aligned large header">Add User</div>
-				<div classNmae="content">
+				<div className="content">
 					<div className="ui large form">
 						<div className="ui stacked segment">
 							<div className="field">

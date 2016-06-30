@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { updateUser } from '../../../api/users/methods';
 
 class EditUserModal extends Component {
 	constructor(props) {
 		super(props);
-		console.log(this.props);
 		this.state = {
 			admin: false,
 			student: true,
@@ -34,9 +33,9 @@ class EditUserModal extends Component {
 	}
 
 	editUser() {
-		const name = this.refs.name.value;
-		const email = this.refs.email.value;
-		const password = this.refs.password.value;
+		const name = this.refs['edit-name'].value;
+		const email = this.refs['edit-email'].value;
+		const user = this.props.user;
 		let role = '';
 
 		if (this.state.admin) {
@@ -48,10 +47,9 @@ class EditUserModal extends Component {
 		}
 
 		updateUser.call({
-            //pass user id
+			userId: user.get()._id,
 			name,
 			email,
-			password,
 			role,
 		}, (err) => {
 			if (err) {
@@ -70,31 +68,31 @@ class EditUserModal extends Component {
 							<div className="field">
 								<div className="ui left icon input">
 									<i className="user icon"></i>
-									<input type="text" name="register-email" ref="name" placeholder="name"></input>
+									<input type="text" name="edit-name" ref="edit-name" placeholder="name"></input>
 								</div>
 							</div>
 							<div className="field">
 								<div className="ui left icon input">
 									<i className="user icon"></i>
-									<input type="text" name="register-email" ref="email" placeholder="Email"></input>
+									<input type="text" name="edit-email" ref="edit-email" placeholder="Email"></input>
 								</div>
 							</div>
 							<div className="inline fields">
 								<div className="field">
 									<div className="ui slider checkbox">
-										<input type="radio" name="role" checked={this.state.admin} onChange={() => this.setAdmin()} />
+										<input type="radio" name="edit-role" checked={this.state.admin} onChange={() => this.setAdmin()} />
 										<label>Admin</label>
 									</div>
 								</div>
 								<div className="field">
 									<div className="ui slider checkbox">
-										<input type="radio" name="role" checked={this.state.mentor} onChange={() => this.setMentor()} />
+										<input type="radio" name="edit-role" checked={this.state.mentor} onChange={() => this.setMentor()} />
 										<label>Mentor</label>
 									</div>
 								</div>
 								<div className="field">
 									<div className="ui slider checkbox">
-										<input type="radio" name="role" checked={this.state.student} onChange={() => this.setStudent()} />
+										<input type="radio" name="edit-role" checked={this.state.student} onChange={() => this.setStudent()} />
 										<label>Student</label>
 									</div>
 								</div>
@@ -114,5 +112,9 @@ class EditUserModal extends Component {
 		);
 	}
 }
+
+EditUserModal.propTypes = {
+	user: PropTypes.object.isRequired,
+};
 
 export default EditUserModal;

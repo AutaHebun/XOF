@@ -57,7 +57,7 @@ export const updateUser = new ValidatedMethod({
 	name: 'users.update',
 	validate: new SimpleSchema({
 		userId: {
-			type: String
+			type: String,
 		},
 		name: {
 			type: String,
@@ -65,14 +65,22 @@ export const updateUser = new ValidatedMethod({
 		email: {
 			type: String,
 		},
-		password: {
-			type: String,
-		},
 		role: {
 			type: String,
 		},
 	}).validator(),
-	run({ userId, name, email, password, role }) {
-		Accounts.users.update({_id: userId}, {name, email, password, role});
+	run({ userId, name, email, role }) {
+		if (!this.userId) {
+			throw new Meteor.Error('Unauthorized Error');
+		}
+		Accounts.users.update({
+			_id: userId,
+		}, {
+			$set: {
+				emails: [{ address: email }],
+				'profile.name': name,
+				'profile.role': role,
+			},
+		});
 	},
 });

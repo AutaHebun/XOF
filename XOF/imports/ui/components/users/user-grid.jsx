@@ -3,6 +3,7 @@ import { $ } from 'meteor/jquery';
 import User from './user.jsx';
 import Paginator from '../helpers/paginator.jsx';
 import AddUserModal from './add-user-modal.jsx';
+import EditUserModal from './edit-user-modal.jsx';
 import DeleteUserConfirmation from './delete-user-confirmation.jsx';
 
 class UserGrid extends Component {
@@ -15,19 +16,19 @@ class UserGrid extends Component {
 	}
 
 	openAddUserModal() {
-		$('.add-user')
+		$('.ui.basic.modal.add-user')
 		.modal({
 			blurring: true,
 		})
-		.modal('setting', 'transition', 'scale')
+		.modal('setting', 'transition', 'horizontal flip')
 		.modal('show');
 	}
 
 	renderUsers() {
-		const startRange = this.state.currentPage * 10;
-		const endRange = startRange + 10;
-		const { currentUser } = this.props;
-		return this.props.users.slice(startRange, endRange).map((user) => <User key={user._id} user={user} currentUser={currentUser} />);
+		const startRange = this.state.currentPage * 1;
+		const endRange = startRange + 1;
+		const { users, currentUser, userToEdit } = this.props;
+		return users.slice(startRange, endRange).map((user) => <User key={user._id} user={user} userToEdit={userToEdit} currentUser={currentUser} />);
 	}
 
 	renderUserPage(index) {
@@ -37,11 +38,12 @@ class UserGrid extends Component {
 	}
 
 	render() {
-		const { users } = this.props;
+		const { users, userToEdit } = this.props;
 		return (users.length > 0
 			? <div id="usersContainer" className="ui center aligned raised segment">
 				<h1 className="ui icon header"><i className="circular users blue icon"></i> User Management </h1>
 				<AddUserModal />
+				<EditUserModal user={userToEdit} />
 				<DeleteUserConfirmation />
 				<table className="ui table user-table">
 					<thead>
@@ -62,7 +64,7 @@ class UserGrid extends Component {
 								<div className="ui small labeled icon blue button" onClick={this.openAddUserModal}>
 						            <i className="user icon"></i> Add User
 						        </div>
-								<Paginator amountData={users.length} renderFunction={this.renderUserPage} elementsPerPage={10} />
+								<Paginator amountData={users.length} renderFunction={this.renderUserPage} elementsPerPage={1} />
 							</th>
 						</tr>
 					</tfoot>
@@ -78,6 +80,7 @@ class UserGrid extends Component {
 UserGrid.propTypes = {
 	users: PropTypes.array.isRequired,
 	currentUser: PropTypes.object.isRequired,
+	userToEdit: PropTypes.object.isRequired,
 };
 
 export default UserGrid;
