@@ -3,11 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 class Login extends Component {
-	constructor(props) {
-		super(props);
-		this.login = this.login.bind(this);
-	}
-
 	login() {
 		event.preventDefault();
 		const email = this.refs.email.value;
@@ -49,9 +44,9 @@ class Login extends Component {
 								</div>
 							</div>
 							<div className="ui buttons">
-								<button className="ui green submit button" onClick={this.login}>Login</button>
+								<button className="ui green submit button" onClick={() => this.login()}>Login</button>
 								<div className="or"></div>
-								<button className="ui blue button" onClick={this.redirectSignUp}>Sign Up</button>
+								<button className="ui blue button" onClick={() => this.redirectSignUp()}>Sign Up</button>
 							</div>
 						</div>
 						<div className="ui error message"></div>

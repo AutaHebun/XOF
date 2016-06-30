@@ -13,13 +13,14 @@
   "author": "Autahebun",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.5",
+    "moment": "^2.13.0",
     "react": "^15.1.0",
     "react-addons-pure-render-mixin": "^15.1.0",
     "react-addons-transition-group": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-komposer": "^1.11.0",
-    "react-mounter": "^1.2.0",
-    "react-router": "^2.4.1"
+    "react-mounter": "^1.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",

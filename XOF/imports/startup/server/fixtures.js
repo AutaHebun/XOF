@@ -5,8 +5,22 @@ const initUsers = () => ([{
 	email: 'test@test.com',
 	password: 'password',
 	profile: {
-		name: 'test',
+		name: 'viktor zavala',
 		role: 'student',
+	},
+}, {
+	email: 'test2@test.com',
+	password: 'password',
+	profile: {
+		name: 'sharon montenegro',
+		role: 'admin',
+	},
+}, {
+	email: 'test3@test.com',
+	password: 'password',
+	profile: {
+		name: 'osman hernandez',
+		role: 'mentor',
 	},
 }]);
 

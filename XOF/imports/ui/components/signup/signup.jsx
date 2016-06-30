@@ -5,7 +5,6 @@ import { Accounts } from 'meteor/accounts-base';
 class Signup extends Component {
 	constructor(props) {
 		super(props);
-		this.registerUser = this.registerUser.bind(this);
 	}
 
 	registerUser() {
@@ -68,7 +67,7 @@ class Signup extends Component {
 									<input type="password" name="confirm-password" ref="confirm-password" placeholder="Confirm Password"></input>
 								</div>
 							</div>
-							<button className="ui green submit button" onClick={this.registerUser}>Register</button>
+							<button className="ui green submit button" onClick={() => this.registerUser()}>Register</button>
 						</div>
 						<div className="ui error message"></div>
 					</div>

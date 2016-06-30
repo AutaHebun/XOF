@@ -8,12 +8,15 @@ import LoginLayout from '../../ui/layouts/loginLayout.jsx';
 import Login from '../../ui/components/login/login.jsx';
 import Signup from '../../ui/components/signup/signup.jsx';
 import Home from '../../ui/components/home/home.jsx';
+import UserGridContainer from '../../ui/containers/users/userGridContainer';
 
 FlowRouter.route('/', {
 	name: 'default.route',
 	triggersEnter: [(context, redirect) => {
 		if (!Meteor.userId()) {
 			redirect('/login');
+		} else {
+			redirect('/home');
 		}
 	}],
 });
@@ -44,6 +47,20 @@ FlowRouter.route('/home', {
 	action() {
 		mount(AppLayout, {
 			content: <Home />,
+		});
+	},
+});
+
+FlowRouter.route('/users', {
+	triggersEnter: [(context, redirect) => {
+		if (!Meteor.userId()) {
+			redirect('/login');
+		}
+	}],
+	name: 'users.usergrid',
+	action() {
+		mount(AppLayout, {
+			content: <UserGridContainer />,
 		});
 	},
 });
