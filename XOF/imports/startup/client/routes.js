@@ -9,6 +9,7 @@ import Login from '../../ui/components/login/login.jsx';
 import Signup from '../../ui/components/signup/signup.jsx';
 import Home from '../../ui/components/home/home.jsx';
 import UserGridContainer from '../../ui/containers/users/userGridContainer';
+import CategoryGridContainer from '../../ui/containers/categories/category-grid-container';
 
 FlowRouter.route('/', {
 	name: 'default.route',
@@ -61,6 +62,20 @@ FlowRouter.route('/users', {
 	action() {
 		mount(AppLayout, {
 			content: <UserGridContainer />,
+		});
+	},
+});
+
+FlowRouter.route('/categories', {
+	triggersEnter: [(context, redirect) => {
+		if (!Meteor.userId()) {
+			redirect('/login');
+		}
+	}],
+	name: 'categories.categorygrid',
+	action() {
+		mount(AppLayout, {
+			content: <CategoryGridContainer />,
 		});
 	},
 });
