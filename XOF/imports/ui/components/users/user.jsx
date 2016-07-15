@@ -33,7 +33,6 @@ class User extends Component {
 	}
 
 	showEditUserModal() {
-		this.props.userToEdit = this.props.user;
 		this.props.userToEdit.set(this.props.user);
 		$('.ui.basic.modal.edit-user')
 		.modal({

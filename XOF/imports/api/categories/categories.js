@@ -21,6 +21,8 @@ const schema = new SimpleSchema({
 	},
 	description: {
 		type: String,
+		optional: true,
+		defaultValue: '',
 	},
 	isActive: {
 		type: Boolean,

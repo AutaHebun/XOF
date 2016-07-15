@@ -17,6 +17,7 @@ class Navbar extends Component {
 					<div className="header item">Welcome {profile.name}</div>
 					<a className="active item">My Courses</a>
 					<a className="item" href="/users">Users</a>
+					<a className="item" href="/categories">Categories</a>
 					<div className="right menu">
 						{currentUser
 							? <a className="item logout" onClick={() => this.logout()}>Logout</a>

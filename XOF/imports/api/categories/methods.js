@@ -13,6 +13,7 @@ export const insertCategory = new ValidatedMethod({
 		description: {
 			type: String,
 			optional: true,
+			defaultValue: '',
 		},
 	}).validator(),
 	run({ name, description }) {
@@ -40,6 +41,8 @@ export const updateCategory = new ValidatedMethod({
 		},
 		description: {
 			type: String,
+			optional: true,
+			defaultValue: '',
 		},
 	}).validator(),
 	run({ categoryId, name, description }) {
@@ -75,6 +78,7 @@ export const removeCategory = new ValidatedMethod({
 		if (!this.userId) {
 			throw new Meteor.Error('Access denied, you need to be admin to perform this action.');
 		}
+
 		const category = Categories.findOne({
 			_id: categoryId,
 			isActive: true,

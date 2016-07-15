@@ -25,8 +25,8 @@ class UserGrid extends Component {
 	}
 
 	renderUsers() {
-		const startRange = this.state.currentPage * 1;
-		const endRange = startRange + 1;
+		const startRange = this.state.currentPage * 10;
+		const endRange = startRange + 10;
 		const { users, currentUser, userToEdit } = this.props;
 		return users.slice(startRange, endRange).map((user) => <User key={user._id} user={user} userToEdit={userToEdit} currentUser={currentUser} />);
 	}
@@ -41,7 +41,7 @@ class UserGrid extends Component {
 		const { users, userToEdit } = this.props;
 		return (users.length > 0
 			? <div id="usersContainer" className="ui center aligned raised segment">
-				<h1 className="ui icon header"><i className="circular users blue icon"></i> User Management </h1>
+				<h1 className="ui header">Users </h1>
 				<AddUserModal />
 				<EditUserModal user={userToEdit} />
 				<DeleteUserConfirmation />
@@ -61,10 +61,10 @@ class UserGrid extends Component {
 					<tfoot>
 						<tr>
 							<th colSpan="5">
-								<div className="ui small labeled icon blue button" onClick={this.openAddUserModal}>
+								<button className="ui small labeled icon blue button" onClick={this.openAddUserModal}>
 						            <i className="user icon"></i> Add User
-						        </div>
-								<Paginator amountData={users.length} renderFunction={this.renderUserPage} elementsPerPage={1} />
+						        </button>
+								<Paginator amountData={users.length} renderFunction={this.renderUserPage} elementsPerPage={10} />
 							</th>
 						</tr>
 					</tfoot>
