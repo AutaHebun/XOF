@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import NavbarContainer from '../containers/navbar/navbarContainer';
+import NavbarContainer from '../containers/navbar/navbar-container';
 
 const App = ({ content }) => (
 	<div>
