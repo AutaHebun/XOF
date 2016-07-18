@@ -26,3 +26,4 @@ flemay:less-autoprefixer
 kadira:flow-router
 static-html
 kadira:debug
+reywood:publish-composite

@@ -8,8 +8,9 @@ import LoginLayout from '../../ui/layouts/loginLayout.jsx';
 import Login from '../../ui/components/login/login.jsx';
 import Signup from '../../ui/components/signup/signup.jsx';
 import Home from '../../ui/components/home/home.jsx';
-import UserGridContainer from '../../ui/containers/users/userGridContainer';
+import UserGridContainer from '../../ui/containers/users/user-grid-container';
 import CategoryGridContainer from '../../ui/containers/categories/category-grid-container';
+import CourseGridContainer from '../../ui/containers/courses/course-grid-container';
 
 FlowRouter.route('/', {
 	name: 'default.route',
@@ -76,6 +77,20 @@ FlowRouter.route('/categories', {
 	action() {
 		mount(AppLayout, {
 			content: <CategoryGridContainer />,
+		});
+	},
+});
+
+FlowRouter.route('/courses', {
+	triggersEnter: [(context, redirect) => {
+		if (!Meteor.userId()) {
+			redirect('/login');
+		}
+	}],
+	name: 'courses.coursegrid',
+	action() {
+		mount(AppLayout, {
+			content: <CourseGridContainer />,
 		});
 	},
 });
