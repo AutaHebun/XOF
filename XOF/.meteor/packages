@@ -27,3 +27,4 @@ kadira:flow-router
 static-html
 kadira:debug
 reywood:publish-composite
+erasaur:meteor-lodash

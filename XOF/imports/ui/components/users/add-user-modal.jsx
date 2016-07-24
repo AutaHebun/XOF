@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { insertUser } from '../../../api/users/methods';
+import Categories from '../../../api/categories/categories';
 
 class AddUserModal extends Component {
 	constructor(props) {
@@ -36,6 +37,7 @@ class AddUserModal extends Component {
 		const name = this.refs.name.value;
 		const email = this.refs.email.value;
 		const password = this.refs.password.value;
+		const categoryId = this.refs.categoryId.value;
 		let role = '';
 
 		if (this.state.admin) {
@@ -51,12 +53,17 @@ class AddUserModal extends Component {
 			email,
 			password,
 			role,
+			categoryId
 		}, (err) => {
 			if (err) {
 				return console.log('oops', err);
 			}
 			console.log('created user');
 		});
+	}
+
+	getCategories(){
+		return this.props.categories.map((category) => <option value={category._id}>{category.name}</option>)
 	}
 	render() {
 		return (
@@ -83,6 +90,14 @@ class AddUserModal extends Component {
 									<input type="password" name="password" ref="password" placeholder="Password"></input>
 								</div>
 							</div>
+							<div className="field">
+								<div className="ui left icon input">
+									<select class="ui search dropdown" ref="categoryId">
+										{this.getCategories()}
+									</select>
+								</div>
+							</div>
+							
 							<div className="inline fields">
 								<div className="field">
 									<div className="ui slider checkbox">

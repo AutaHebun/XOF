@@ -18,8 +18,11 @@ export const insertUser = new ValidatedMethod({
 		role: {
 			type: String,
 		},
+		categoryId: {
+			type: String
+		},
 	}).validator(),
-	run({ name, email, password, role }) {
+	run({ name, email, password, role, categoryId }) {
 		if (!this.userId) {
 			throw new Meteor.Error('Unauthorized Error');
 		}
@@ -29,6 +32,7 @@ export const insertUser = new ValidatedMethod({
 			profile: {
 				name,
 				role,
+				categoryId,
 			},
 		});
 	},
@@ -68,8 +72,11 @@ export const updateUser = new ValidatedMethod({
 		role: {
 			type: String,
 		},
+		categoryId: {
+			type: String,
+		},
 	}).validator(),
-	run({ userId, name, email, role }) {
+	run({ userId, name, email, role, categoryId }) {
 		if (!this.userId) {
 			throw new Meteor.Error('Unauthorized Error');
 		}
@@ -80,6 +87,7 @@ export const updateUser = new ValidatedMethod({
 				emails: [{ address: email }],
 				'profile.name': name,
 				'profile.role': role,
+				'profile.categoryId': categoryId,
 			},
 		});
 	},
