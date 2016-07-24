@@ -28,7 +28,7 @@ class UserGrid extends Component {
 		const startRange = this.state.currentPage * 10;
 		const endRange = startRange + 10;
 		const { users, currentUser, userToEdit } = this.props;
-		return users.slice(startRange, endRange).map((user) => <User key={user._id} user={user} userToEdit={userToEdit} currentUser={currentUser} />);
+		return users.slice(startRange, endRange).map((user) => <User key={user._id} user={user} userToEdit={userToEdit} currentUser={currentUser} categories={this.props.categories} />);
 	}
 
 	renderUserPage(index) {
@@ -42,8 +42,8 @@ class UserGrid extends Component {
 		return (users.length > 0
 			? <div id="usersContainer" className="ui center aligned raised segment">
 				<h1 className="ui header">Users </h1>
-				<AddUserModal />
-				<EditUserModal user={userToEdit} />
+				<AddUserModal categories={this.props.categories}/>
+				<EditUserModal user={userToEdit} categories={this.props.categories}/>
 				<DeleteUserConfirmation />
 				<table className="ui table user-table">
 					<thead>
@@ -51,6 +51,7 @@ class UserGrid extends Component {
 							<th>Name</th>
 							<th>Email</th>
 							<th>Role</th>
+							<th>Category</th>
 							<th>Created</th>
 							<th>Action</th>
 						</tr>

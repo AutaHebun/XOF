@@ -42,6 +42,14 @@ class User extends Component {
 		.modal('show');
 	}
 
+	getCategoryName(categoryId){
+		var category = 	_.find(this.props.categories, function(category){
+			return category._id === categoryId
+		});
+		
+		return category ? category.name : "Not assigned";
+	}
+
 	render() {
 		const { user, currentUser } = this.props;
 		const { profile, emails } = user;
@@ -54,6 +62,7 @@ class User extends Component {
 				<td> {profile.name} </td>
 				<td> {emails[0].address}</td>
 				<td> {profile.role}</td>
+				<td> {this.getCategoryName(profile.categoryId)}</td>
 				<td> {moment(user.createdAt).format('dddd, MMMM Do YYYY')}</td>
 				<td>
 					<div className="two ui small buttons">

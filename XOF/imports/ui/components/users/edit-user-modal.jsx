@@ -36,6 +36,7 @@ class EditUserModal extends Component {
 		const name = this.refs['edit-name'].value;
 		const email = this.refs['edit-email'].value;
 		const user = this.props.user;
+		const categoryId = this.refs['categoryId'].value;
 		let role = '';
 
 		if (this.state.admin) {
@@ -51,6 +52,7 @@ class EditUserModal extends Component {
 			name,
 			email,
 			role,
+			categoryId
 		}, (err) => {
 			if (err) {
 				return console.log('oops', err);
@@ -58,6 +60,11 @@ class EditUserModal extends Component {
 			console.log('updated user');
 		});
 	}
+
+	getCategories(){
+		return this.props.categories.map((category) => <option value={category._id}>{category.name}</option>)
+	}
+
 	render() {
 		return (
 			<div className="ui basic modal edit-user">
@@ -75,6 +82,13 @@ class EditUserModal extends Component {
 								<div className="ui left icon input">
 									<i className="user icon"></i>
 									<input type="text" name="edit-email" ref="edit-email" placeholder="Email"></input>
+								</div>
+							</div>
+							<div className="field">
+								<div className="ui left icon input">
+									<select class="ui search dropdown" ref="categoryId">
+										{this.getCategories()}
+									</select>
 								</div>
 							</div>
 							<div className="inline fields">
