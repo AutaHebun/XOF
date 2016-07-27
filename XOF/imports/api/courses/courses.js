@@ -29,6 +29,14 @@ const schema = new SimpleSchema({
 		defaultValue: true,
 		optional: true,
 	},
+	categoryId: {
+		type: String,
+	},
+	mentorId: {
+		type: String,
+		defaultValue: '',
+		optional: true
+	},
 });
 
 Courses.attachSchema(schema);
