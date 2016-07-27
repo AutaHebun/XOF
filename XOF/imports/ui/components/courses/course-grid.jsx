@@ -7,8 +7,8 @@ class CourseGrid extends Component {
 		this.renderCourses = this.renderCourses.bind(this);
 	}
 	renderCourses() {
-		const { courses } = this.props;
-		return courses.map((course) => <Course key={course._id} course={course} />);
+		const { courses, currentUser } = this.props;
+		return courses.map((course) => <Course key={course._id} course={course} currentUser={currentUser} />);
 	}
 	render() {
 		return (
@@ -21,6 +21,7 @@ class CourseGrid extends Component {
 
 CourseGrid.propTypes = {
 	courses: PropTypes.array.isRequired,
+	currentUser: PropTypes.object.isRequired,
 };
 
 export default CourseGrid;

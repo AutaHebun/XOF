@@ -12,7 +12,7 @@ class Login extends Component {
 			if (err) {
 				return console.log('error', err);
 			}
-			FlowRouter.go('/home');
+			FlowRouter.go('/courses');
 		});
 	}
 

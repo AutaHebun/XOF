@@ -34,26 +34,33 @@ const initCategories = () => ([{
 	name: 'Meteor',
 	description: 'Meteor Development',
 	isActive: true,
+}, {
+	name: 'Advanced Programming',
+	description: 'Programming for jedis',
+	isActive: true,
 }]);
 
-const initCourses = () => ([{
+const initCourses = (categories, users) => ([{
 	title: 'Meteor Development',
 	description: 'Making web applications with Meteor',
 	isActive: true,
+	categoryId: categories[0]._id,
 }, {
 	title: 'Redux 101',
 	description: 'Understanding Redux and its implementation with React',
 	isActive: true,
+	categoryId: categories[1]._id,
+	mentorId: users[2]._id,
 }, {
 	title: 'Reactive programming',
 	description: 'Advanced course using RXJS',
 	isActive: true,
+	categoryId: categories[2]._id,
 }]);
 
 Meteor.startup(() => {
 	const users = initUsers();
 	const categories = initCategories();
-	const courses = initCourses();
 
 	if (Meteor.users.find().count() === 0) {
 		users.forEach((user) => Accounts.createUser(user));
@@ -64,6 +71,9 @@ Meteor.startup(() => {
 	}
 
 	if (Courses.find().count() === 0) {
+		const dbCategories = Categories.find().fetch();
+		const dbUsers = Meteor.users.find().fetch();
+		const courses = initCourses(dbCategories, dbUsers);
 		courses.forEach((course) => Courses.insert(course));
 	}
 });

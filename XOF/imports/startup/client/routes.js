@@ -18,7 +18,7 @@ FlowRouter.route('/', {
 		if (!Meteor.userId()) {
 			redirect('/login');
 		} else {
-			redirect('/home');
+			redirect('/courses');
 		}
 	}],
 });
