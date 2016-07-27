@@ -16,6 +16,10 @@ class UserGrid extends Component {
 	}
 
 	openAddUserModal() {
+		const modalRendered = $('.ui.dimmer.modals > .ui.basic.modal.add-user').length >= 1;
+		if (modalRendered) {
+			$($('.ui.basic.modal.add-user')[1]).remove();
+		}
 		$('.ui.basic.modal.add-user')
 		.modal({
 			blurring: true,
