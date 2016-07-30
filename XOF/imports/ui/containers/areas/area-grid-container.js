@@ -10,7 +10,7 @@ const composer = (props, onData) => {
 		const areas = Areas.find().fetch();
 		const areaToEdit = new ReactiveVar({});
 		onData(null, {
-			categories,
+			areas,
 			areaToEdit,
 		});
 	}

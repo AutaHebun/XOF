@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { updateArea } from '../../../api/area/methods';
+import { updateArea } from '../../../api/areas/methods';
 
 class EditAreaModal extends Component {
 	updateArea() {

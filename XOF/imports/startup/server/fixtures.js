@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Categories } from '../../api/categories/categories';
 import { Courses } from '../../api/courses/courses';
+import { Areas } from '../../api/areas/areas';
 
 const initUsers = () => ([{
 	email: 'test@test.com',
@@ -40,6 +41,20 @@ const initCategories = () => ([{
 	isActive: true,
 }]);
 
+const initAreas = () => ([{
+	name: 'Development',
+	description: 'Dudes and buddies',
+	isActive: true,
+}, {
+	name: 'Quality Assurance',
+	description: 'Al hail our Montenegro overlords',
+	isActive: true,
+}, {
+	name: 'Business Analyst',
+	description: 'Sort of like unicorns',
+	isActive: true,
+}]);
+
 const initCourses = (categories, users) => ([{
 	title: 'Meteor Development',
 	description: 'Making web applications with Meteor',
@@ -61,7 +76,8 @@ const initCourses = (categories, users) => ([{
 Meteor.startup(() => {
 	const users = initUsers();
 	const categories = initCategories();
-
+	const areas = initAreas();
+	
 	if (Meteor.users.find().count() === 0) {
 		users.forEach((user) => Accounts.createUser(user));
 	}
@@ -75,5 +91,9 @@ Meteor.startup(() => {
 		const dbUsers = Meteor.users.find().fetch();
 		const courses = initCourses(dbCategories, dbUsers);
 		courses.forEach((course) => Courses.insert(course));
+	}
+
+	if (Areas.find().count() === 0) {
+		areas.forEach((area) => Areas.insert(area));
 	}
 });

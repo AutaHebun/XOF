@@ -11,6 +11,7 @@ import Home from '../../ui/components/home/home.jsx';
 import UserGridContainer from '../../ui/containers/users/user-grid-container';
 import CategoryGridContainer from '../../ui/containers/categories/category-grid-container';
 import CourseGridContainer from '../../ui/containers/courses/course-grid-container';
+import AreaGridContainer from '../../ui/containers/areas/area-grid-container';
 
 FlowRouter.route('/', {
 	name: 'default.route',
