@@ -55,7 +55,7 @@ class UserGrid extends Component {
 							<th>Name</th>
 							<th>Email</th>
 							<th>Role</th>
-							<th>Category</th>
+							<th>Area</th>
 							<th>Created</th>
 							<th>Action</th>
 						</tr>
