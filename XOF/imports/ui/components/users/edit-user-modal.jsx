@@ -35,6 +35,7 @@ class EditUserModal extends Component {
 	editUser() {
 		const name = this.refs['edit-name'].value;
 		const email = this.refs['edit-email'].value;
+		const areaId = this.refs['areaId'].value;
 		const user = this.props.user;
 		let role = '';
 
@@ -51,6 +52,7 @@ class EditUserModal extends Component {
 			name,
 			email,
 			role,
+			areaId,
 		}, (err) => {
 			if (err) {
 				return console.log('oops', err);
@@ -58,6 +60,11 @@ class EditUserModal extends Component {
 			console.log('updated user');
 		});
 	}
+
+	getAreas(){
+ 		return this.props.areas.map((area) => <option value={area._id}>{area.name}</option>)
+ 	}
+
 	render() {
 		return (
 			<div className="ui basic modal edit-user">
@@ -77,6 +84,13 @@ class EditUserModal extends Component {
 									<input type="text" name="edit-email" ref="edit-email" placeholder="Email"></input>
 								</div>
 							</div>
+							<div className="field">
+ 								<div className="ui left icon input">
+ 									<select class="ui search dropdown" ref="areaId">
+ 										{this.getAreas()}
+ 									</select>
+ 								</div>
+ 							</div>
 							<div className="inline fields">
 								<div className="field">
 									<div className="ui slider checkbox">

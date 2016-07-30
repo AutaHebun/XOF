@@ -47,7 +47,7 @@ class UserGrid extends Component {
 			? <div id="usersContainer" className="ui center aligned raised segment">
 				<h1 className="ui header">Users </h1>
 				<AddUserModal areas={this.props.areas}/>
-				<EditUserModal user={userToEdit} />
+				<EditUserModal user={userToEdit} areas={this.props.areas} />
 				<DeleteUserConfirmation />
 				<table className="ui table user-table">
 					<thead>
