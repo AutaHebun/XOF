@@ -53,6 +53,10 @@ const initAreas = () => ([{
 	name: 'Business Analyst',
 	description: 'Sort of like unicorns',
 	isActive: true,
+},{
+	name: 'Product Ownership',
+	description: 'Obviously not Osman',
+	isActive: true,
 }]);
 
 const initCourses = (categories, users) => ([{
