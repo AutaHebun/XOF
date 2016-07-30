@@ -42,6 +42,13 @@ class User extends Component {
 		.modal('show');
 	}
 
+	getAreaName(areaId){
+ 		var area = this.props.areas.find(function(area){
+			 return area._id === areaId;
+		 })
+ 		return area ? area.name : "Not assigned";
+ 	}
+
 	render() {
 		const { user, currentUser } = this.props;
 		const { profile, emails } = user;
@@ -54,6 +61,7 @@ class User extends Component {
 				<td> {profile.name} </td>
 				<td> {emails[0].address}</td>
 				<td> {profile.role}</td>
+				<td> {this.getAreaName(profile.areaId)}</td>
 				<td> {moment(user.createdAt).format('dddd, MMMM Do YYYY')}</td>
 				<td>
 					<div className="two ui small buttons">

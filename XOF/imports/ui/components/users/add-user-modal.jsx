@@ -36,6 +36,7 @@ class AddUserModal extends Component {
 		const name = this.refs.name.value;
 		const email = this.refs.email.value;
 		const password = this.refs.password.value;
+		const areaId = this.refs.areaId.value;
 		let role = '';
 
 		if (this.state.admin) {
@@ -51,6 +52,7 @@ class AddUserModal extends Component {
 			email,
 			password,
 			role,
+			areaId,
 		}, (err) => {
 			if (err) {
 				return console.log('oops', err);
@@ -58,6 +60,11 @@ class AddUserModal extends Component {
 			console.log('created user');
 		});
 	}
+
+	getAreas(){
+ 		return this.props.areas.map((area) => <option key={area._id} value={area._id}>{area.name}</option>)
+ 	}
+
 	render() {
 		return (
 			<div className="ui basic modal add-user">
@@ -83,6 +90,13 @@ class AddUserModal extends Component {
 									<input type="password" name="password" ref="password" placeholder="Password"></input>
 								</div>
 							</div>
+							<div className="field">
+ 								<div className="ui left icon input">
+ 									<select class="ui search dropdown" ref="areaId">
+ 										{this.getAreas()}
+ 									</select>
+								</div>
+ 							</div>
 							<div className="inline fields">
 								<div className="field">
 									<div className="ui slider checkbox">

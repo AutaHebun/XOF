@@ -32,7 +32,7 @@ class UserGrid extends Component {
 		const startRange = this.state.currentPage * 10;
 		const endRange = startRange + 10;
 		const { users, currentUser, userToEdit } = this.props;
-		return users.slice(startRange, endRange).map((user) => <User key={user._id} user={user} userToEdit={userToEdit} currentUser={currentUser} />);
+		return users.slice(startRange, endRange).map((user) => <User key={user._id} user={user} userToEdit={userToEdit} currentUser={currentUser} areas={this.props.areas}/>);
 	}
 
 	renderUserPage(index) {
@@ -46,8 +46,8 @@ class UserGrid extends Component {
 		return (users.length > 0
 			? <div id="usersContainer" className="ui center aligned raised segment">
 				<h1 className="ui header">Users </h1>
-				<AddUserModal />
-				<EditUserModal user={userToEdit} />
+				<AddUserModal areas={this.props.areas}/>
+				<EditUserModal user={userToEdit} areas={this.props.areas} />
 				<DeleteUserConfirmation />
 				<table className="ui table user-table">
 					<thead>
@@ -55,6 +55,7 @@ class UserGrid extends Component {
 							<th>Name</th>
 							<th>Email</th>
 							<th>Role</th>
+							<th>Area</th>
 							<th>Created</th>
 							<th>Action</th>
 						</tr>
@@ -64,7 +65,7 @@ class UserGrid extends Component {
 					</tbody>
 					<tfoot>
 						<tr>
-							<th colSpan="5">
+							<th colSpan="6">
 								<button className="ui small labeled icon blue button" onClick={this.openAddUserModal}>
 						            <i className="user icon"></i> Add User
 						        </button>
@@ -83,6 +84,7 @@ class UserGrid extends Component {
 
 UserGrid.propTypes = {
 	users: PropTypes.array.isRequired,
+	areas: PropTypes.array.isRequired,
 	currentUser: PropTypes.object.isRequired,
 	userToEdit: PropTypes.object.isRequired,
 };
