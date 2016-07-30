@@ -65,7 +65,7 @@ class Area extends Component {
 
 Area.propTypes = {
 	area: PropTypes.object.isRequired,
-	areaToEdi: PropTypes.object.isRequired,
+	areaToEdit: PropTypes.object.isRequired,
 };
 
 export default Area;
