@@ -62,7 +62,7 @@ class EditUserModal extends Component {
 	}
 
 	getAreas(){
- 		return this.props.areas.map((area) => <option value={area._id}>{area.name}</option>)
+ 		return this.props.areas.map((area) => <option key={area._id} value={area._id}>{area.name}</option>)
  	}
 
 	render() {
