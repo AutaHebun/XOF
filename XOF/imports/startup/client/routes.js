@@ -94,3 +94,17 @@ FlowRouter.route('/courses', {
 		});
 	},
 });
+
+FlowRouter.route('/areas', {
+	triggersEnter: [(context, redirect) => {
+		if (!Meteor.userId()) {
+			redirect('/login');
+		}
+	}],
+	name: 'areas.areagrid',
+	action() {
+		mount(AppLayout, {
+			content: <AreaGridContainer />,
+		});
+	},
+});
