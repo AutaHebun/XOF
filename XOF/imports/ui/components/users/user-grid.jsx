@@ -65,7 +65,7 @@ class UserGrid extends Component {
 					</tbody>
 					<tfoot>
 						<tr>
-							<th colSpan="5">
+							<th colSpan="6">
 								<button className="ui small labeled icon blue button" onClick={this.openAddUserModal}>
 						            <i className="user icon"></i> Add User
 						        </button>
