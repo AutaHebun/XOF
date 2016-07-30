@@ -4,12 +4,13 @@ import { Categories } from '../../api/categories/categories';
 import { Courses } from '../../api/courses/courses';
 import { Areas } from '../../api/areas/areas';
 
-const initUsers = () => ([{
+const initUsers = (areas) => ([{
 	email: 'test@test.com',
 	password: 'password',
 	profile: {
 		name: 'viktor zavala',
 		role: 'student',
+		areaId: areas[0]._id
 	},
 }, {
 	email: 'test2@test.com',
@@ -17,6 +18,7 @@ const initUsers = () => ([{
 	profile: {
 		name: 'sharon montenegro',
 		role: 'admin',
+		areaId: areas[1]._id,
 	},
 }, {
 	email: 'test3@test.com',
@@ -24,6 +26,7 @@ const initUsers = () => ([{
 	profile: {
 		name: 'osman hernandez',
 		role: 'mentor',
+		areaId: areas[2]._id,
 	},
 }]);
 
@@ -78,11 +81,16 @@ const initCourses = (categories, users) => ([{
 }]);
 
 Meteor.startup(() => {
-	const users = initUsers();
 	const categories = initCategories();
 	const areas = initAreas();
 	
+	if (Areas.find().count() === 0) {
+			areas.forEach((area) => Areas.insert(area));
+	}
+
 	if (Meteor.users.find().count() === 0) {
+		const areas = Areas.find({}).fetch();
+		const users = initUsers(areas);
 		users.forEach((user) => Accounts.createUser(user));
 	}
 
