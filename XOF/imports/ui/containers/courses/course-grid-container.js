@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { composeWithTracker } from 'react-komposer';
+import { ReactiveVar } from 'meteor/reactive-var';
 import CourseGrid from '../../components/courses/course-grid.jsx';
 import { Courses } from '../../../api/courses/courses';
 import { Categories } from '../../../api/categories/categories';
@@ -10,6 +11,7 @@ const composer = (props, onData) => {
 		const courses = Courses.find().fetch();
 		const categories = Categories.find().fetch();
 		const users = Meteor.users.find().fetch();
+
 		courses.map((course) => {
 			const tempCourse = course;
 			tempCourse.category = (categories.filter((category) => category._id === course.categoryId)[0].name);
@@ -17,9 +19,12 @@ const composer = (props, onData) => {
 			tempCourse.mentor = mentor !== undefined ? mentor.profile.name : '';
 			return tempCourse;
 		});
+
+		const course = new ReactiveVar({});
 		onData(null, {
 			courses,
 			currentUser: Meteor.user(),
+			course,
 		});
 	}
 };
