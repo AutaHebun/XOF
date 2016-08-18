@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Course from './course.jsx';
+import AssignMentorContainer from '../../containers/courses/assign-mentor-container';
 
 class CourseGrid extends Component {
 	constructor(props) {
@@ -7,12 +8,14 @@ class CourseGrid extends Component {
 		this.renderCourses = this.renderCourses.bind(this);
 	}
 	renderCourses() {
-		const { courses, currentUser } = this.props;
-		return courses.map((course) => <Course key={course._id} course={course} currentUser={currentUser} />);
+		const { courses, currentUser, course } = this.props;
+		return courses.map((mapCourse) => <Course key={mapCourse._id} course={mapCourse} currentUser={currentUser} chosenCourse={course} />);
 	}
 	render() {
+		const { course } = this.props;
 		return (
 			<div className="ui three stackable cards">
+				<AssignMentorContainer course={course} />
 				{this.renderCourses()}
 			</div>
 		);
@@ -22,6 +25,7 @@ class CourseGrid extends Component {
 CourseGrid.propTypes = {
 	courses: PropTypes.array.isRequired,
 	currentUser: PropTypes.object.isRequired,
+	course: PropTypes.object.isRequired,
 };
 
 export default CourseGrid;
