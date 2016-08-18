@@ -16,15 +16,11 @@ class UserGrid extends Component {
 	}
 
 	openAddUserModal() {
-		const modalRendered = $('.ui.dimmer.modals > .ui.basic.modal.add-user').length >= 1;
-		if (modalRendered) {
-			$($('.ui.basic.modal.add-user')[1]).remove();
-		}
 		$('.ui.basic.modal.add-user')
 		.modal({
-			blurring: true,
+			detachable: false,
+			transition: 'horizontal flip',
 		})
-		.modal('setting', 'transition', 'horizontal flip')
 		.modal('show');
 	}
 
@@ -32,7 +28,7 @@ class UserGrid extends Component {
 		const startRange = this.state.currentPage * 10;
 		const endRange = startRange + 10;
 		const { users, currentUser, userToEdit } = this.props;
-		return users.slice(startRange, endRange).map((user) => <User key={user._id} user={user} userToEdit={userToEdit} currentUser={currentUser} areas={this.props.areas}/>);
+		return users.slice(startRange, endRange).map((user) => <User key={user._id} user={user} userToEdit={userToEdit} currentUser={currentUser} areas={this.props.areas} />);
 	}
 
 	renderUserPage(index) {
@@ -46,7 +42,7 @@ class UserGrid extends Component {
 		return (users.length > 0
 			? <div id="usersContainer" className="ui center aligned raised segment">
 				<h1 className="ui header">Users </h1>
-				<AddUserModal areas={this.props.areas}/>
+				<AddUserModal areas={this.props.areas} />
 				<EditUserModal user={userToEdit} areas={this.props.areas} />
 				<DeleteUserConfirmation />
 				<table className="ui table user-table">

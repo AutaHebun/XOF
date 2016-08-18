@@ -5,6 +5,36 @@ import classNames from 'classnames';
 import { removeUser } from '../../../api/users/methods';
 
 class User extends Component {
+	getAreaName(areaId) {
+		const foundArea = this.props.areas.find((area) => area._id === areaId);
+		return foundArea ? foundArea.name : 'Not assigned';
+	}
+
+	showEditUserModal() {
+		this.props.userToEdit.set(this.props.user);
+		$('.ui.basic.modal.edit-user')
+		.modal({
+			detachable: false,
+			transition: 'horizontal flip',
+		})
+		.modal('show');
+	}
+
+	showDeleteUserModal() {
+		const self = this;
+
+		$('.delete-user-confirmation')
+		.modal({
+			detachable: false,
+			transition: 'horizontal flip',
+			onApprove() {
+				const { user } = self.props;
+				self.deleteUser(user._id);
+			},
+		})
+		.modal('show');
+	}
+
 	deleteUser(userId) {
 		removeUser.call({
 			userId,
@@ -14,40 +44,6 @@ class User extends Component {
 			}
 		});
 	}
-
-	showDeleteUserModal() {
-		const self = this;
-
-		$('.delete-user-confirmation')
-		.modal({
-			blurring: true,
-		})
-		.modal({
-			onApprove() {
-				const { user } = self.props;
-				self.deleteUser(user._id);
-			},
-		})
-		.modal('setting', 'transition', 'scale')
-		.modal('show');
-	}
-
-	showEditUserModal() {
-		this.props.userToEdit.set(this.props.user);
-		$('.ui.basic.modal.edit-user')
-		.modal({
-			blurring: true,
-		})
-		.modal('setting', 'transition', 'horizontal flip')
-		.modal('show');
-	}
-
-	getAreaName(areaId){
- 		var area = this.props.areas.find(function(area){
-			 return area._id === areaId;
-		 })
- 		return area ? area.name : "Not assigned";
- 	}
 
 	render() {
 		const { user, currentUser } = this.props;
@@ -81,6 +77,7 @@ User.propTypes = {
 	user: PropTypes.object.isRequired,
 	currentUser: PropTypes.object.isRequired,
 	userToEdit: PropTypes.object.isRequired,
+	areas: PropTypes.array.isRequired,
 };
 
 export default User;

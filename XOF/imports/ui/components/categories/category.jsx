@@ -18,15 +18,13 @@ class Category extends Component {
 
 		$('.delete-category-confirmation')
 		.modal({
-			blurring: true,
-		})
-		.modal({
+			detachable: false,
+			transition: 'horizontal flip',
 			onApprove() {
 				const { category } = self.props;
 				self.deleteCategory(category._id);
 			},
 		})
-		.modal('setting', 'transition', 'scale')
 		.modal('show');
 	}
 
@@ -34,9 +32,9 @@ class Category extends Component {
 		this.props.categoryToEdit.set(this.props.category);
 		$('.ui.basic.modal.edit-category')
 		.modal({
-			blurring: true,
+			detachable: false,
+			transition: 'horizontal flip',
 		})
-		.modal('setting', 'transition', 'horizontal flip')
 		.modal('show');
 	}
 

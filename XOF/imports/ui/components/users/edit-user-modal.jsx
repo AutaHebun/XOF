@@ -32,10 +32,14 @@ class EditUserModal extends Component {
 		});
 	}
 
+	getAreas() {
+		return this.props.areas.map((area) => <option key={area._id} value={area._id}>{area.name}</option>);
+	}
+
 	editUser() {
 		const name = this.refs['edit-name'].value;
 		const email = this.refs['edit-email'].value;
-		const areaId = this.refs['areaId'].value;
+		const areaId = this.refs.areaId.value;
 		const user = this.props.user;
 		let role = '';
 
@@ -61,15 +65,11 @@ class EditUserModal extends Component {
 		});
 	}
 
-	getAreas(){
- 		return this.props.areas.map((area) => <option key={area._id} value={area._id}>{area.name}</option>)
- 	}
-
 	render() {
 		return (
 			<div className="ui basic modal edit-user">
 				<div className="ui center aligned large header">Edit User</div>
-				<div classNmae="content">
+				<div className="content">
 					<div className="ui large form">
 						<div className="ui stacked segment">
 							<div className="field">
@@ -85,12 +85,12 @@ class EditUserModal extends Component {
 								</div>
 							</div>
 							<div className="field">
- 								<div className="ui left icon input">
- 									<select class="ui search dropdown" ref="areaId">
- 										{this.getAreas()}
- 									</select>
- 								</div>
- 							</div>
+								<div className="ui left icon input">
+									<select className="ui search dropdown" ref="areaId">
+										{this.getAreas()}
+									</select>
+								</div>
+							</div>
 							<div className="inline fields">
 								<div className="field">
 									<div className="ui slider checkbox">
@@ -129,6 +129,7 @@ class EditUserModal extends Component {
 
 EditUserModal.propTypes = {
 	user: PropTypes.object.isRequired,
+	areas: PropTypes.array.isRequired,
 };
 
 export default EditUserModal;

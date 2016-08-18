@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { insertUser } from '../../../api/users/methods';
 
 class AddUserModal extends Component {
@@ -32,6 +32,10 @@ class AddUserModal extends Component {
 		});
 	}
 
+	getAreas() {
+		return this.props.areas.map((area) => <option key={area._id} value={area._id}>{area.name}</option>);
+	}
+
 	addUser() {
 		const name = this.refs.name.value;
 		const email = this.refs.email.value;
@@ -61,10 +65,6 @@ class AddUserModal extends Component {
 		});
 	}
 
-	getAreas(){
- 		return this.props.areas.map((area) => <option key={area._id} value={area._id}>{area.name}</option>)
- 	}
-
 	render() {
 		return (
 			<div className="ui basic modal add-user">
@@ -91,12 +91,12 @@ class AddUserModal extends Component {
 								</div>
 							</div>
 							<div className="field">
- 								<div className="ui left icon input">
- 									<select class="ui search dropdown" ref="areaId">
- 										{this.getAreas()}
- 									</select>
+								<div className="ui left icon input">
+									<select className="ui search dropdown" ref="areaId">
+										{this.getAreas()}
+									</select>
 								</div>
- 							</div>
+							</div>
 							<div className="inline fields">
 								<div className="field">
 									<div className="ui slider checkbox">
@@ -132,5 +132,9 @@ class AddUserModal extends Component {
 		);
 	}
 }
+
+AddUserModal.propTypes = {
+	areas: PropTypes.array.isRequired,
+};
 
 export default AddUserModal;

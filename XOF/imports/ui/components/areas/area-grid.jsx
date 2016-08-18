@@ -16,15 +16,11 @@ class AreaGrid extends Component {
 	}
 
 	openAddAreaModal() {
-		const modalRendered = $('.ui.dimmer.modals > .ui.basic.modal.add-area').length >= 1;
-		if (modalRendered) {
-			$($('.ui.basic.modal.add-area')[1]).remove();
-		}
 		$('.ui.basic.modal.add-area')
 		.modal({
-			blurring: true,
+			detachable: false,
+			transition: 'horizontal flip',
 		})
-		.modal('setting', 'transition', 'horizontal flip')
 		.modal('show');
 	}
 

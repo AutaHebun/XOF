@@ -35,7 +35,7 @@ const schema = new SimpleSchema({
 	mentorId: {
 		type: String,
 		defaultValue: '',
-		optional: true
+		optional: true,
 	},
 });
 

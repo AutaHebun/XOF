@@ -16,15 +16,11 @@ class CategoryGrid extends Component {
 	}
 
 	openAddCategoryModal() {
-		const modalRendered = $('.ui.dimmer.modals > .ui.basic.modal.add-category').length >= 1;
-		if (modalRendered) {
-			$($('.ui.basic.modal.add-categort')[1]).remove();
-		}
 		$('.ui.basic.modal.add-category')
 		.modal({
-			blurring: true,
+			detachable: false,
+			transition: 'horizontal flip',
 		})
-		.modal('setting', 'transition', 'horizontal flip')
 		.modal('show');
 	}
 

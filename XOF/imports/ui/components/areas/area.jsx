@@ -18,15 +18,13 @@ class Area extends Component {
 
 		$('.delete-area-confirmation')
 		.modal({
-			blurring: true,
-		})
-		.modal({
+			detachable: false,
+			transition: 'horizontal flip',
 			onApprove() {
 				const { area } = self.props;
 				self.deleteArea(area._id);
 			},
 		})
-		.modal('setting', 'transition', 'scale')
 		.modal('show');
 	}
 
@@ -34,9 +32,9 @@ class Area extends Component {
 		this.props.areaToEdit.set(this.props.area);
 		$('.ui.basic.modal.edit-area')
 		.modal({
-			blurring: true,
+			detachable: false,
+			transition: 'horizontal flip',
 		})
-		.modal('setting', 'transition', 'horizontal flip')
 		.modal('show');
 	}
 
